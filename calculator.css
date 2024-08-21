@@ -1,0 +1,17 @@
+label {
+    display: block;
+}
+
+.color-display {
+    width: 100px;
+    height: 100px;
+}
+
+body {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+div {
+    border: black;
+}

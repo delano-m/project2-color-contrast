@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <h1>Color Calculator!</h1>
+    <h3>Hello! This is the color calculator.</h3>
+    <p>Here you'll want to enter two different hex numbers </p>
+    <form id="form">
+        <fieldset>
+        <label for="box1">Enter the First Color (Click the box)
+            <!-- <input type="text" id="box1" name="box1" placeholder="e.g #8ACE00" required> -->
+            <input type="color" name="box1">
+        </label>
+        <label for="box2">Enter the Second Color (Click the box)
+            <!-- <input type="text" id="box2" name="box2" placeholder="e.g #8ACE00" required> -->
+            <input type="color" name="box2">
+        </label>
+        <button type="submit">Submit</button>
+    </fieldset>
+    </form>
+    <h1>Below is the display for the first color</h1>
+    <div id="box1-display" class="color-display" style="background-color: purple"></div>
+    <h1>Below is the display for the second color</h1>
+    <div id="box2-display" class="color-display" style="background-color: gold"></div>
+    <h1 id="contrast-score">The contrast score between these two colors is: </h1>
+</body>
+<script src="calculator.js"></script>
+</html>
