@@ -9,17 +9,13 @@ function onFormSubmit(event) {
     let data = new FormData(event.target);
     box1 = data.get("box1");
     box2 = data.get("box2");
-
-    console.log(box1);
-    console.log(box2);
+    document.getElementById("box1-display").style.backgroundColor = box1;
+    document.getElementById("box2-display").style.backgroundColor =  box2;
 
     findContrast(box1, box2);
 }
 
 function findContrast(box1, box2) {
-    document.getElementById("box1-display").style.backgroundColor = box1;
-    document.getElementById("box2-display").style.backgroundColor =  box2;
-
     rgbBox1 = hexToDecimal(box1);
     normalBox1 = normalizeRGB(rgbBox1);
     l1 = luminanceRGB(normalBox1);
@@ -35,7 +31,7 @@ function findContrast(box1, box2) {
 
 }
 
-// not needed anymore - switched to color
+// not needed anymore - switched to input type = color
 // function isHex(input) {
 //     const regex = /[A-F0-9]/;
 //     return regex.test(input);
@@ -46,10 +42,11 @@ function hexToDecimal(hex) {
     r = parseInt(hex.substring(1,3), 16);
     g = parseInt(hex.substring(3,5), 16);
     b = parseInt(hex.substring(5,7), 16);
-    return [r, g, b];
+    return [r, g, b]; // RGB array
 }
 
 function normalizeRGB(rgb) {
+    // loop through rgb array and mutate accordinly
     for (let i = 0; i < rgb.length - 1; i++) {
         rgb[i] /= 255;
         if (rgb[i] <= 0.04045) {
@@ -58,7 +55,7 @@ function normalizeRGB(rgb) {
             rgb[i] = Math.pow(((rgb[i] + 0.055)/1.055), 2.4);
         }
     }
-    return rgb;
+    return rgb; // RGB array
 }
 
 function luminanceRGB(rgb) {
