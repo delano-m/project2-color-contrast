@@ -24,11 +24,18 @@ function findContrast(box1, box2) {
     normalBox2 = normalizeRGB(rgbBox2);
     l2 = luminanceRGB(normalBox2);
 
-    document.getElementById("contrast-score").innerHTML = "The contrast score between these two colors is: " + contrast(l1, l2);
+    contrastRounded = Math.round((contrast(l1,l2) * 1000))/1000;
 
-
-
-
+    document.getElementById("contrast-score").innerHTML = "The contrast score between these two colors is: " + contrastRounded;
+    msg = ""
+    if (contrast(l1,l2) > 4.5) {
+        msg = "good";
+    } else if (contrast(l1,l2) >= 7) {
+        msg = "great";
+    } else {
+        msg = "bad";
+    }
+    document.getElementById("contrast-msg").innerHTML = "Your contrast is " + msg;
 }
 
 // not needed anymore - switched to input type = color
@@ -46,8 +53,8 @@ function hexToDecimal(hex) {
 }
 
 function normalizeRGB(rgb) {
-    // loop through rgb array and mutate accordinly
-    for (let i = 0; i < rgb.length - 1; i++) {
+    // loop through rgb array and mutate accordingly
+    for (let i = 0; i < rgb.length; i++) {
         rgb[i] /= 255;
         if (rgb[i] <= 0.04045) {
             rgb[i] /= 12.92;
@@ -60,7 +67,7 @@ function normalizeRGB(rgb) {
 
 function luminanceRGB(rgb) {
     rgb[0] *= 0.2126;
-    rgb[1] *= 0.7151;
+    rgb[1] *= 0.7152;
     rgb[2] *= 0.0722;
     lum = rgb[0] + rgb[1] + rgb[2];
     return lum;
